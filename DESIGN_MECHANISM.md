@@ -736,29 +736,94 @@ SCORE
 LIVES
 TIME
 
+Example:
+
+WORLD 1-3   SCORE 004800   ♥♥♥   TIME 045
+
 Victory sequence:
 
-LEVEL COMPLETE
-
-followed subtly by:
-
-ONE FINAL MOVE
-
-The visual hierarchy should intentionally make:
+he fake victory should dominate the screen.
 
 LEVEL COMPLETE
 
-very obvious,
-
-while:
+The real warning should appear more subtly:
 
 ONE FINAL MOVE
 
-is quieter and easier to overlook.
+The intended visual hierarchy is:
+
+LOUD:
+LEVEL COMPLETE
+
+QUIET:
+ONE FINAL MOVE
+
+This reinforces the game's psychological trick.
 
 ---
 
-## 14. Death System
+## 19. Lives System
+
+Example:
+
+♥ ♥ ♥
+
+Normal failure:
+
+♥ ♥ ♥
+  ↓
+♥ ♥ ♡
+
+Another death:
+
+♥ ♥ ♡
+  ↓
+♥ ♡ ♡
+
+Important:
+
+The forced tutorial death in Room 1-1 does not consume a life.
+
+## 20. Score System
+
+Possible score calculation:
+
+BASE COMPLETION SCORE
++
+SURVIVAL BONUS
++
+SPEED BONUS
++
+FIRST-ATTEMPT BONUS
++
+REMAINING LIFE BONUS
+
+Example:
+
+Puzzle Complete        +1000
+Last Move Survived     +500
+Speed Bonus            +250
+No Death Bonus         +300
+
+Deaths can reduce score without necessarily blocking progression.
+
+## 21. Timer
+
+Rooms should remain short.
+
+Recommended target:
+
+Under 60 seconds per room.
+
+This keeps the game:
+
+- Fast
+- Replayable
+- Stream-friendly
+- Suitable for short-form content
+- Easy to demonstrate during a hackathon
+
+## 22. Death System
 
 Death should be:
 
@@ -771,9 +836,11 @@ Death should be:
 After death:
 
 DEATH
-↓
+  ↓
 SHORT REACTION
-↓
+  ↓
+OPTIONAL RULE MESSAGE
+  ↓
 RESTART
 
 The player should be able to restart almost immediately.
@@ -782,124 +849,176 @@ Avoid long loading screens.
 
 ---
 
-## 15. Lives System
+## 23. Rage Cam / Clip System
 
-Initial concept:
+A future version may capture funny Last Move deaths.
 
-♥ ♥ ♥
+Possible flow:
 
-A failed Last Move removes one life.
+PLAYER DIES
+     ↓
+CAPTURE RECENT GAMEPLAY
+     ↓
+CREATE SHORT CLIP
+     ↓
+OPTIONAL SHARE
 
-Example:
+Possible message:
 
-♥ ♥ ♥
-↓
-♥ ♥ ♡
-↓
-♥ ♡ ♡
+CLIP THAT DEATH?
 
-The final implementation can decide whether lives are:
+For the MVP, a full automatic MP4 export system is not required.
 
-- per level
-- per world
-- cosmetic
-- tied to score
-
----
-
-## 16. Scoring
-
-Possible score components:
-
-Base puzzle completion
-+
-Speed bonus
-+
-First-attempt survival bonus
-+
-Remaining lives bonus
-+
-Last Move bonus
-
-Deaths can reduce the final score without preventing progression.
+A simple replay or mock sharing button is sufficient.
 
 ---
 
-## 17. Timer
+## 24. Level Progression
 
-Each room should be short.
+ROOM 1-1 
 
-Target:
+Forced Tutorial Death 
+Lesson: 
+"The level isn't over when you win." 
 
-Under 60 seconds per room.
+ROOM 1-2 
 
-The timer creates urgency while keeping the game suitable for:
+Simple Post-Win Movement 
+Lesson:
+"Keep watching." 
 
-- quick sessions
-- streaming
-- short-form content
-- repeated attempts
+ROOM 1-3
+
+DO_NOT_TOUCH 
+Lesson: 
+"Immediate action can kill you." 
+
+ROOM 1-4 
+
+WAIT
+Lesson:
+"Waiting and doing nothing are different." 
+
+ROOM 1-5 
+
+Fake Continue Button
+Lesson:
+"UI can be part of the trap." 
+
+ROOM 1-6 
+
+False Flag 
+Lesson: 
+"The obvious solution may be wrong." 
+
+ROOM 1-7
+
+Rule Mutation 
+Lesson: 
+"Never rely on one universal strategy."
+
+ROOM 1-BOSS 
+
+Combination Challenge 
+Lesson:
+"Question everything."
+
+---
+## 25. Suggested World 1 Progression
+
+World 1 should gradually teach the player how to distrust the game.
+
+Room 1-1 — Tutorial Death
+
+Lesson:
+The level isn't over when you win.
+
+Forced first death.
+
+No punishment.
+
+Room 1-2 — Watch After Winning
+
+Simple telegraphed trap.
+
+Lesson:
+Keep watching after the victory screen.
+
+Room 1-3 — DO_NOT_TOUCH
+
+The instinct to act immediately becomes dangerous.
+
+Lesson:
+Sometimes the correct move is no move.
+
+Room 1-4 — WAIT
+
+The player must delay action and then respond.
+
+Lesson:
+Waiting is different from doing nothing.
+
+Room 1-5 — Fake Continue
+
+The interface becomes part of the puzzle.
+
+Lesson:
+Do not blindly trust UI.
+
+Room 1-6 — False Flag
+
+The obvious solution is misleading.
+
+Lesson:
+Question the first answer.
+
+Room 1-7 — Rule Mutation
+
+Previous habits become dangerous.
+
+Lesson:
+There is no universal strategy.
+
+World 1 Boss
+Multiple ideas are combined.
+
+The player must distinguish:
+
+Real clue
+Fake clue
+UI clue
+Environmental clue
+Timing clue
+
+Lesson:
+Question everything, but observe carefully.
+
+
+## 26. Design Principles
+
+Every normal room should follow these rules:
+
+1.  The basic room must be easy to understand.
+2.  The apparent victory must feel convincing.
+3.  The real challenge happens after apparent victory.
+4.  Every normal trap must contain a clue.
+5.  Important deaths must not be random.
+6.  Room 1-1 is the only unavoidable tutorial death.
+7.  The tutorial death must not punish the player.
+8.  The same Last Move should not repeat excessively.
+9.  Previous solutions must not become universal strategies.
+10. Failure should teach the player something.
+11. Restarting should be extremely fast.
+12. Controls should stay simple.
+13. UI may be used as part of the puzzle.
+14. Mobile OS interactions must never create unfair deaths.
+15. Difficulty should come from observation and expectation.
+16. The player should gradually distrust the victory screen.
+17. The game may deceive the player, but it must never cheat the player.
 
 ---
 
-## 18. Rage Cam / Clip System
-
-When the player dies during the Last Move:
-
-Death Event
-↓
-Capture recent gameplay
-↓
-Generate short clip
-↓
-Optional Share
-
-For the first prototype this feature does NOT need to be fully implemented.
-
-It can initially be represented by:
-
-"CLIP THAT DEATH"
-
-or a simple replay mechanism.
-
----
-
-## 19. Level Progression
-
-Example:
-
-WORLD 1
-
-1-1 → Introduction
-1-2 → Move after winning
-1-3 → Don't move
-1-4 → Fake Continue button
-1-5 → Delayed trap
-1-6 → False Flag
-1-7 → Rule Mutation
-1-8 → Multi-stage Last Move
-1-BOSS → Player's assumptions are tested together
-
----
-
-## 20. Design Principles
-
-Every level should follow these rules:
-
-1. Easy to understand.
-2. Fast to retry.
-3. The normal puzzle is intentionally simple.
-4. The real challenge happens after apparent victory.
-5. Every trap has a clue.
-6. Nothing important is purely random.
-7. Do not repeat the same Last Move continuously.
-8. Failure should teach the player something.
-9. Death should feel surprising enough to be memorable.
-10. The player should distrust the phrase "LEVEL COMPLETE."
-
----
-
-## 21. Technical Mechanism
+## 27. Technical Mechanism
 
 Current implementation:
 
@@ -932,43 +1051,169 @@ Recommended game modules:
 
 src/
 ├── game/
+|   |
 │   ├── Game.ts
+|   |
 │   ├── GameState.ts
+|   |
 │   ├── GameLoop.ts
 │
 ├── player/
+|   |
 │   ├── Player.ts
+|   |
 │   └── PlayerController.ts
 │
 ├── levels/
+|   |
 │   ├── LevelManager.ts
+|   |
 │   └── levelData.ts
 │
 ├── traps/
+|   |
 │   ├── Trap.ts
+|   |
 │   └── TrapManager.ts
 │
 ├── systems/
+|   |
+|   ├── InputSystem.ts
+|   |
 │   ├── TrustMeter.ts
+|   |
 │   ├── ScoreSystem.ts
+|   |
 │   ├── LivesSystem.ts
+|   |
 │   └── TimerSystem.ts
 │
 └── ui/
     ├── HUD.ts
+    |
     ├── WinScreen.ts
+    |
     └── DeathScreen.ts
 
 ---
 
-## 22. Golden Rule
+ # 28. Recommended Level Logic
 
-The central rule of The Last Move is:
+Each room follows the same basic state flow:
 
-THE LEVEL DOES NOT END WHEN THE PLAYER WINS.
+```text
+PLAYING
+   ↓
+EXIT_REACHED
+   ↓
+FAKE_COMPLETE
+   ↓
+LAST_MOVE
+   ↓
+┌───────────┐
+↓           ↓
+SURVIVED   DEAD
+↓           ↓
+NEXT ROOM  RESTART
+```
+
+Conceptually:
+
+```ts
+if (gameState === "PLAYING" && playerReachedExit) {
+  gameState = "EXIT_REACHED";
+}
+
+if (gameState === "EXIT_REACHED") {
+  showFakeVictory();
+  gameState = "FAKE_COMPLETE";
+}
+
+if (gameState === "FAKE_COMPLETE" && fakeVictoryFinished()) {
+  startLastMove();
+  gameState = "LAST_MOVE";
+}
+
+if (gameState === "LAST_MOVE") {
+  evaluatePlayerAction();
+}
+```
+
+The Last Move result determines the outcome:
+
+```ts
+if (playerSurvivedTrap()) {
+  gameState = "SURVIVED";
+  loadNextRoom();
+} else {
+  gameState = "DEAD";
+  restartRoom();
+}
+```
+
+### Room 1-1 Exception
+
+On the player's first attempt in Room `1-1`, the tutorial death is forced:
+
+```ts
+if (isRoom1_1 && attemptNumber === 1) {
+  triggerTutorialDeath();
+}
+```
+
+This death:
+
+* Does not remove a life
+* Does not reduce score
+* Does not count as a normal death
+* Teaches the player that reaching the exit is not true victory
+
+From the second attempt onward, Room `1-1` follows the normal level logic.
+
+> **The exit begins the final challenge. Surviving the Last Move completes the room.**
+
+-------
+
+## 29. Final Design Philosophy
+
+The Last Move is not really about reaching an exit.
+
+It is about what happens psychologically after the player believes the challenge is finished.
+
+The game repeatedly creates:
+
+CONFIDENCE
+    ↓
+VICTORY
+    ↓
+RELAXATION
+    ↓
+DOUBT
+    ↓
+OBSERVATION
+    ↓
+DECISION
+
+The player's instinct changes over time.
+
+At first:
+
+"I won."
+
+Later:
+
+"Wait... did I?"
+
+That transformation is the central experience of the game.
+------
+
+## 30. Golden Rule
 
 The apparent victory is part of the puzzle.
 
+The exit is not the final challenge.
+
+The victory screen is not proof of safety.
 The true victory occurs only after the player survives:
 
 THE LAST MOVE.
