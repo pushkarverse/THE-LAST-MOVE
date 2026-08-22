@@ -882,43 +882,119 @@ Lesson:
 "The level isn't over when you win." 
 
 ROOM 1-2 
+
 Simple Post-Win Movement 
 Lesson:
 "Keep watching." 
 
 ROOM 1-3
+
 DO_NOT_TOUCH 
 Lesson: 
 "Immediate action can kill you." 
 
 ROOM 1-4 
+
 WAIT
 Lesson:
 "Waiting and doing nothing are different." 
 
 ROOM 1-5 
+
 Fake Continue Button
 Lesson:
 "UI can be part of the trap." 
 
 ROOM 1-6 
+
 False Flag 
 Lesson: 
 "The obvious solution may be wrong." 
 
 ROOM 1-7
+
 Rule Mutation 
 Lesson: 
 "Never rely on one universal strategy."
 
 ROOM 1-BOSS 
+
 Combination Challenge 
 Lesson:
 "Question everything."
 
 ---
+## 25. Suggested World 1 Progression
 
-## 25. Design Principles
+World 1 should gradually teach the player how to distrust the game.
+
+Room 1-1 — Tutorial Death
+
+Lesson:
+The level isn't over when you win.
+
+Forced first death.
+
+No punishment.
+
+Room 1-2 — Watch After Winning
+
+Simple telegraphed trap.
+
+Lesson:
+Keep watching after the victory screen.
+
+Room 1-3 — DO_NOT_TOUCH
+
+The instinct to act immediately becomes dangerous.
+
+Lesson:
+Sometimes the correct move is no move.
+
+Room 1-4 — WAIT
+
+The player must delay action and then respond.
+
+Lesson:
+Waiting is different from doing nothing.
+
+Room 1-5 — Fake Continue
+
+The interface becomes part of the puzzle.
+
+Lesson:
+Do not blindly trust UI.
+
+Room 1-6 — False Flag
+
+The obvious solution is misleading.
+
+Lesson:
+Question the first answer.
+
+Room 1-7 — Rule Mutation
+
+Previous habits become dangerous.
+
+Lesson:
+There is no universal strategy.
+
+World 1 Boss
+Multiple ideas are combined.
+
+The player must distinguish:
+
+Real clue
+Fake clue
+UI clue
+Environmental clue
+Timing clue
+
+Lesson:
+Question everything, but observe carefully.
+
+
+## 26. Design Principles
 
 Every normal room should follow these rules:
 
@@ -942,7 +1018,7 @@ Every normal room should follow these rules:
 
 ---
 
-## 26. Technical Mechanism
+## 27. Technical Mechanism
 
 Current implementation:
 
@@ -975,37 +1051,53 @@ Recommended game modules:
 
 src/
 ├── game/
+|   |
 │   ├── Game.ts
+|   |
 │   ├── GameState.ts
+|   |
 │   ├── GameLoop.ts
 │
 ├── player/
+|   |
 │   ├── Player.ts
+|   |
 │   └── PlayerController.ts
 │
 ├── levels/
+|   |
 │   ├── LevelManager.ts
+|   |
 │   └── levelData.ts
 │
 ├── traps/
+|   |
 │   ├── Trap.ts
+|   |
 │   └── TrapManager.ts
 │
 ├── systems/
+|   |
 |   ├── InputSystem.ts
+|   |
 │   ├── TrustMeter.ts
+|   |
 │   ├── ScoreSystem.ts
+|   |
 │   ├── LivesSystem.ts
+|   |
 │   └── TimerSystem.ts
 │
 └── ui/
     ├── HUD.ts
+    |
     ├── WinScreen.ts
+    |
     └── DeathScreen.ts
 
 ---
 
- # 27. Recommended Level Logic
+ # 28. Recommended Level Logic
 
 Each room follows the same basic state flow:
 
@@ -1082,7 +1174,7 @@ From the second attempt onward, Room `1-1` follows the normal level logic.
 
 -------
 
-## 28. Final Design Philosophy
+## 29. Final Design Philosophy
 
 The Last Move is not really about reaching an exit.
 
@@ -1115,14 +1207,13 @@ Later:
 That transformation is the central experience of the game.
 ------
 
-## 29. Golden Rule
-
-The central rule of The Last Move is:
-
-THE LEVEL DOES NOT END WHEN THE PLAYER WINS.
+## 30. Golden Rule
 
 The apparent victory is part of the puzzle.
 
+The exit is not the final challenge.
+
+The victory screen is not proof of safety.
 The true victory occurs only after the player survives:
 
 THE LAST MOVE.
