@@ -1,0 +1,186 @@
+[gd_scene load_steps=24 format=3 uid="uid://player_scene_1"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://m1sf8sur71d3" path="res://assets/characters/Girl_2/Idle.png" id="2_idle"]
+[ext_resource type="Texture2D" uid="uid://ws1stas1lmre" path="res://assets/characters/Girl_2/Walk.png" id="3_walk"]
+
+; ── Idle frames (7) ──────────────────────────────────────────────────
+[sub_resource type="AtlasTexture" id="AT_i0"]
+atlas = ExtResource("2_idle")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AT_i1"]
+atlas = ExtResource("2_idle")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AT_i2"]
+atlas = ExtResource("2_idle")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AT_i3"]
+atlas = ExtResource("2_idle")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AT_i4"]
+atlas = ExtResource("2_idle")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AT_i5"]
+atlas = ExtResource("2_idle")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AT_i6"]
+atlas = ExtResource("2_idle")
+region = Rect2(768, 0, 128, 128)
+
+; ── Walk frames (12) ─────────────────────────────────────────────────
+[sub_resource type="AtlasTexture" id="AT_w0"]
+atlas = ExtResource("3_walk")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AT_w1"]
+atlas = ExtResource("3_walk")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AT_w2"]
+atlas = ExtResource("3_walk")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AT_w3"]
+atlas = ExtResource("3_walk")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AT_w4"]
+atlas = ExtResource("3_walk")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AT_w5"]
+atlas = ExtResource("3_walk")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AT_w6"]
+atlas = ExtResource("3_walk")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AT_w7"]
+atlas = ExtResource("3_walk")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AT_w8"]
+atlas = ExtResource("3_walk")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AT_w9"]
+atlas = ExtResource("3_walk")
+region = Rect2(1152, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AT_w10"]
+atlas = ExtResource("3_walk")
+region = Rect2(1280, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AT_w11"]
+atlas = ExtResource("3_walk")
+region = Rect2(1408, 0, 128, 128)
+
+; ── SpriteFrames resource ────────────────────────────────────────────
+[sub_resource type="SpriteFrames" id="SF_1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AT_i0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AT_i1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AT_i2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AT_i3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AT_i4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AT_i5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AT_i6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AT_w0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AT_w1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AT_w2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AT_w3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AT_w4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AT_w5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AT_w6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AT_w7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AT_w8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AT_w9")
+}, {
+"duration": 1.0,
+"texture": SubResource("AT_w10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AT_w11")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
+}]
+
+; ── Collision shape  ─────────────────────────────────────────────────
+; Player world-space collision: ~12 px wide, ~28 px tall capsule
+; AnimatedSprite2D is at scale 0.25 so 128*0.25=32 px visual (slight overhang = fine)
+[sub_resource type="CapsuleShape2D" id="CAP_1"]
+radius = 6.0
+height = 28.0
+
+; ─────────────────────────────────────────────────────────────────────
+;  Scene nodes
+; ─────────────────────────────────────────────────────────────────────
+
+; CharacterBody2D root – scale stays at 1,1; only the sprite child is scaled.
+; collision_layer 2  = player layer
+; collision_mask  1  = terrain layer
+; collision_mask  8  = hazard layer (for Area2D hazards to detect player)
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_script")
+
+; Sprite child at 0.25 scale → 32 px visual height at native resolution
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -2)
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SF_1")
+animation = &"idle"
+
+; Collision shape centered on the CharacterBody2D origin
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -14)
+shape = SubResource("CAP_1")
