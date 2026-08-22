@@ -1,0 +1,21 @@
+{
+  "id": "1-07",
+  "grid": {
+    "w": 7,
+    "h": 7
+  },
+  "player_start": {
+    "x": 3,
+    "y": 3
+  },
+  "walls": [],
+  "exits": [],
+  "last_move": {
+    "rule": "stay_still",
+    "window_ms": 0,
+    "tell": {
+      "type": "stay",
+      "start_ms": 0
+    }
+  }
+}

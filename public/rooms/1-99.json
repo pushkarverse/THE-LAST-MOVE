@@ -1,0 +1,36 @@
+{
+  "id": "1-99",
+  "grid": {
+    "w": 7,
+    "h": 7
+  },
+  "player_start": {
+    "x": 3,
+    "y": 5
+  },
+  "walls": [
+    {
+      "x": 2,
+      "y": 2
+    },
+    {
+      "x": 4,
+      "y": 2
+    }
+  ],
+  "exits": [
+    {
+      "x": 3,
+      "y": 1,
+      "is_real": true
+    }
+  ],
+  "last_move": {
+    "rule": "DO_NOT_MOVE",
+    "window_ms": 3000,
+    "tell": {
+      "type": "TILE_FLICKER",
+      "start_ms": 200
+    }
+  }
+}
