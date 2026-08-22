@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://gbs6ogeu22ss"]
+
+[ext_resource type="Script" path="res://scripts/moving_platform.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://75iwaeu2hlyn" path="res://assets/environment/kenney_pixel-platformer/Tilemap/tilemap_packed.png" id="2_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mp"]
+size = Vector2(54, 18)
+
+[node name="MovingPlatform" type="AnimatableBody2D"]
+collision_layer = 1
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+region_enabled = true
+region_rect = Rect2(18, 18, 54, 18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mp")

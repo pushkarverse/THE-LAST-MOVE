@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bgbs6ogeu22ss"]
+
+[ext_resource type="Script" path="res://scripts/disappearing_platform.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://75iwaeu2hlyn" path="res://assets/environment/kenney_pixel-platformer/Tilemap/tilemap_packed.png" id="2_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dp"]
+size = Vector2(54, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_detect"]
+size = Vector2(52, 6)
+
+[node name="DisappearingPlatform" type="StaticBody2D"]
+collision_layer = 1
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+region_enabled = true
+region_rect = Rect2(18, 18, 54, 18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dp")
+
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_detect")

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://djq1p0xwabcde"]
+
+[ext_resource type="Script" path="res://scripts/spike.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://75iwaeu2hlyn" path="res://assets/environment/kenney_pixel-platformer/Tilemap/tilemap_packed.png" id="2_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spike"]
+size = Vector2(14, 9)
+
+[node name="Spike" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+region_enabled = true
+region_rect = Rect2(162, 54, 18, 18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_spike")

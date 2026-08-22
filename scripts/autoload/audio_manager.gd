@@ -13,7 +13,7 @@ extends Node
 ##   death.mp3   - real MP3, imported correctly.
 
 const SOUNDS := {
-    "walk":        "res://audio/sfx/walk.wav",          # MP3 data, imported as AudioStreamMP3
+    "walk":        "res://audio/sfx/walk.wav",
     "damage":      "res://audio/sfx/warning.wav",       # AIFF unsupported; use warning.wav instead
     "death":       "res://audio/sfx/death.mp3",
     "warning":     "res://audio/sfx/warning.wav",
@@ -34,7 +34,16 @@ func _ready() -> void:
     # Preload streams; silently skip missing/unimported files so startup never crashes.
     for key in SOUNDS.keys():
         var path: String = SOUNDS[key]
-        if ResourceLoader.exists(path):
+        if key == "walk" and path.ends_with(".wav"):
+            # Manually load the MP3 data because the file has a .wav extension
+            if FileAccess.file_exists(path):
+                var f = FileAccess.open(path, FileAccess.READ)
+                var stream = AudioStreamMP3.new()
+                stream.data = f.get_buffer(f.get_length())
+                _streams[key] = stream
+            else:
+                push_warning("AudioManager: could not find '%s' for key '%s'" % [path, key])
+        elif ResourceLoader.exists(path):
             _streams[key] = load(path)
         else:
             push_warning("AudioManager: could not load '%s' for key '%s'" % [path, key])
