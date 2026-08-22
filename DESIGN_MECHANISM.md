@@ -873,7 +873,7 @@ A simple replay or mock sharing button is sufficient.
 
 ---
 
-## 19. Level Progression
+## 24. Level Progression
 
 ROOM 1-1 
 
@@ -918,24 +918,31 @@ Lesson:
 
 ---
 
-## 20. Design Principles
+## 25. Design Principles
 
-Every level should follow these rules:
+Every normal room should follow these rules:
 
-1. Easy to understand.
-2. Fast to retry.
-3. The normal puzzle is intentionally simple.
-4. The real challenge happens after apparent victory.
-5. Every trap has a clue.
-6. Nothing important is purely random.
-7. Do not repeat the same Last Move continuously.
-8. Failure should teach the player something.
-9. Death should feel surprising enough to be memorable.
-10. The player should distrust the phrase "LEVEL COMPLETE."
+1.  The basic room must be easy to understand.
+2.  The apparent victory must feel convincing.
+3.  The real challenge happens after apparent victory.
+4.  Every normal trap must contain a clue.
+5.  Important deaths must not be random.
+6.  Room 1-1 is the only unavoidable tutorial death.
+7.  The tutorial death must not punish the player.
+8.  The same Last Move should not repeat excessively.
+9.  Previous solutions must not become universal strategies.
+10. Failure should teach the player something.
+11. Restarting should be extremely fast.
+12. Controls should stay simple.
+13. UI may be used as part of the puzzle.
+14. Mobile OS interactions must never create unfair deaths.
+15. Difficulty should come from observation and expectation.
+16. The player should gradually distrust the victory screen.
+17. The game may deceive the player, but it must never cheat the player.
 
 ---
 
-## 21. Technical Mechanism
+## 26. Technical Mechanism
 
 Current implementation:
 
@@ -985,6 +992,7 @@ src/
 │   └── TrapManager.ts
 │
 ├── systems/
+|   ├── InputSystem.ts
 │   ├── TrustMeter.ts
 │   ├── ScoreSystem.ts
 │   ├── LivesSystem.ts
@@ -997,10 +1005,117 @@ src/
 
 ---
 
-Recommended Level Logic
+ # 27. Recommended Level Logic
 
+Each room follows the same basic state flow:
 
-## 22. Golden Rule
+```text
+PLAYING
+   ↓
+EXIT_REACHED
+   ↓
+FAKE_COMPLETE
+   ↓
+LAST_MOVE
+   ↓
+┌───────────┐
+↓           ↓
+SURVIVED   DEAD
+↓           ↓
+NEXT ROOM  RESTART
+```
+
+Conceptually:
+
+```ts
+if (gameState === "PLAYING" && playerReachedExit) {
+  gameState = "EXIT_REACHED";
+}
+
+if (gameState === "EXIT_REACHED") {
+  showFakeVictory();
+  gameState = "FAKE_COMPLETE";
+}
+
+if (gameState === "FAKE_COMPLETE" && fakeVictoryFinished()) {
+  startLastMove();
+  gameState = "LAST_MOVE";
+}
+
+if (gameState === "LAST_MOVE") {
+  evaluatePlayerAction();
+}
+```
+
+The Last Move result determines the outcome:
+
+```ts
+if (playerSurvivedTrap()) {
+  gameState = "SURVIVED";
+  loadNextRoom();
+} else {
+  gameState = "DEAD";
+  restartRoom();
+}
+```
+
+### Room 1-1 Exception
+
+On the player's first attempt in Room `1-1`, the tutorial death is forced:
+
+```ts
+if (isRoom1_1 && attemptNumber === 1) {
+  triggerTutorialDeath();
+}
+```
+
+This death:
+
+* Does not remove a life
+* Does not reduce score
+* Does not count as a normal death
+* Teaches the player that reaching the exit is not true victory
+
+From the second attempt onward, Room `1-1` follows the normal level logic.
+
+> **The exit begins the final challenge. Surviving the Last Move completes the room.**
+
+-------
+
+## 28. Final Design Philosophy
+
+The Last Move is not really about reaching an exit.
+
+It is about what happens psychologically after the player believes the challenge is finished.
+
+The game repeatedly creates:
+
+CONFIDENCE
+    ↓
+VICTORY
+    ↓
+RELAXATION
+    ↓
+DOUBT
+    ↓
+OBSERVATION
+    ↓
+DECISION
+
+The player's instinct changes over time.
+
+At first:
+
+"I won."
+
+Later:
+
+"Wait... did I?"
+
+That transformation is the central experience of the game.
+------
+
+## 29. Golden Rule
 
 The central rule of The Last Move is:
 
