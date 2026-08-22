@@ -736,29 +736,94 @@ SCORE
 LIVES
 TIME
 
+Example:
+
+WORLD 1-3   SCORE 004800   ♥♥♥   TIME 045
+
 Victory sequence:
 
-LEVEL COMPLETE
-
-followed subtly by:
-
-ONE FINAL MOVE
-
-The visual hierarchy should intentionally make:
+he fake victory should dominate the screen.
 
 LEVEL COMPLETE
 
-very obvious,
-
-while:
+The real warning should appear more subtly:
 
 ONE FINAL MOVE
 
-is quieter and easier to overlook.
+The intended visual hierarchy is:
+
+LOUD:
+LEVEL COMPLETE
+
+QUIET:
+ONE FINAL MOVE
+
+This reinforces the game's psychological trick.
 
 ---
 
-## 14. Death System
+## 19. Lives System
+
+Example:
+
+♥ ♥ ♥
+
+Normal failure:
+
+♥ ♥ ♥
+  ↓
+♥ ♥ ♡
+
+Another death:
+
+♥ ♥ ♡
+  ↓
+♥ ♡ ♡
+
+Important:
+
+The forced tutorial death in Room 1-1 does not consume a life.
+
+## 20. Score System
+
+Possible score calculation:
+
+BASE COMPLETION SCORE
++
+SURVIVAL BONUS
++
+SPEED BONUS
++
+FIRST-ATTEMPT BONUS
++
+REMAINING LIFE BONUS
+
+Example:
+
+Puzzle Complete        +1000
+Last Move Survived     +500
+Speed Bonus            +250
+No Death Bonus         +300
+
+Deaths can reduce score without necessarily blocking progression.
+
+## 21. Timer
+
+Rooms should remain short.
+
+Recommended target:
+
+Under 60 seconds per room.
+
+This keeps the game:
+
+- Fast
+- Replayable
+- Stream-friendly
+- Suitable for short-form content
+- Easy to demonstrate during a hackathon
+
+## 22. Death System
 
 Death should be:
 
@@ -771,9 +836,11 @@ Death should be:
 After death:
 
 DEATH
-↓
+  ↓
 SHORT REACTION
-↓
+  ↓
+OPTIONAL RULE MESSAGE
+  ↓
 RESTART
 
 The player should be able to restart almost immediately.
@@ -782,103 +849,72 @@ Avoid long loading screens.
 
 ---
 
-## 15. Lives System
+## 23. Rage Cam / Clip System
 
-Initial concept:
+A future version may capture funny Last Move deaths.
 
-♥ ♥ ♥
+Possible flow:
 
-A failed Last Move removes one life.
+PLAYER DIES
+     ↓
+CAPTURE RECENT GAMEPLAY
+     ↓
+CREATE SHORT CLIP
+     ↓
+OPTIONAL SHARE
 
-Example:
+Possible message:
 
-♥ ♥ ♥
-↓
-♥ ♥ ♡
-↓
-♥ ♡ ♡
+CLIP THAT DEATH?
 
-The final implementation can decide whether lives are:
+For the MVP, a full automatic MP4 export system is not required.
 
-- per level
-- per world
-- cosmetic
-- tied to score
-
----
-
-## 16. Scoring
-
-Possible score components:
-
-Base puzzle completion
-+
-Speed bonus
-+
-First-attempt survival bonus
-+
-Remaining lives bonus
-+
-Last Move bonus
-
-Deaths can reduce the final score without preventing progression.
-
----
-
-## 17. Timer
-
-Each room should be short.
-
-Target:
-
-Under 60 seconds per room.
-
-The timer creates urgency while keeping the game suitable for:
-
-- quick sessions
-- streaming
-- short-form content
-- repeated attempts
-
----
-
-## 18. Rage Cam / Clip System
-
-When the player dies during the Last Move:
-
-Death Event
-↓
-Capture recent gameplay
-↓
-Generate short clip
-↓
-Optional Share
-
-For the first prototype this feature does NOT need to be fully implemented.
-
-It can initially be represented by:
-
-"CLIP THAT DEATH"
-
-or a simple replay mechanism.
+A simple replay or mock sharing button is sufficient.
 
 ---
 
 ## 19. Level Progression
 
-Example:
+ROOM 1-1 
 
-WORLD 1
+Forced Tutorial Death 
+Lesson: 
+"The level isn't over when you win." 
 
-1-1 → Introduction
-1-2 → Move after winning
-1-3 → Don't move
-1-4 → Fake Continue button
-1-5 → Delayed trap
-1-6 → False Flag
-1-7 → Rule Mutation
-1-8 → Multi-stage Last Move
-1-BOSS → Player's assumptions are tested together
+ROOM 1-2 
+Simple Post-Win Movement 
+Lesson:
+"Keep watching." 
+
+ROOM 1-3
+DO_NOT_TOUCH 
+Lesson: 
+"Immediate action can kill you." 
+
+ROOM 1-4 
+WAIT
+Lesson:
+"Waiting and doing nothing are different." 
+
+ROOM 1-5 
+Fake Continue Button
+Lesson:
+"UI can be part of the trap." 
+
+ROOM 1-6 
+False Flag 
+Lesson: 
+"The obvious solution may be wrong." 
+
+ROOM 1-7
+Rule Mutation 
+Lesson: 
+"Never rely on one universal strategy."
+
+ROOM 1-BOSS 
+Combination Challenge 
+Lesson:
+"Question everything."
 
 ---
 
@@ -960,6 +996,9 @@ src/
     └── DeathScreen.ts
 
 ---
+
+Recommended Level Logic
+
 
 ## 22. Golden Rule
 
