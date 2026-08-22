@@ -15,6 +15,7 @@ const JUMP_BUFFER   : float = 0.10    # seconds to buffer a jump before landing
 # ──────────────────────────────────────────
 var _coyote_timer    : float = 0.0
 var _jump_buf_timer  : float = 0.0
+var _step_timer      : float = 0.0
 var _was_on_floor    : bool  = false
 var _is_dead         : bool  = false
 
@@ -49,6 +50,7 @@ func _physics_process(delta: float) -> void:
 	_handle_jump()
 	_handle_horizontal(delta)
 	move_and_slide()
+	_handle_footsteps(delta)
 	_update_animation()
 	_check_fallen_out()
 
@@ -100,6 +102,18 @@ func _handle_horizontal(delta: float) -> void:
 		velocity.x = dir * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0.0, SPEED * 3.0 * delta)
+
+
+func _handle_footsteps(delta: float) -> void:
+	if is_on_floor() and absf(velocity.x) > 5.0:
+		_step_timer -= delta
+		if _step_timer <= 0.0:
+			AudioManager.play("walk", -18.0) # Play quietly
+			_step_timer = 0.28 # Sensible footstep interval
+	else:
+		# Reset timer when stopped or in air, so first step plays immediately upon moving
+		_step_timer = 0.0
+
 
 
 # ──────────────────────────────────────────

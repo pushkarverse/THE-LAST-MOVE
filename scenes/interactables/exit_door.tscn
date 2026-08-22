@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://zmq1p0xwabcde"]
+
+[ext_resource type="Script" path="res://scripts/exit_door.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://75iwaeu2hlyn" path="res://assets/environment/kenney_pixel-platformer/Tilemap/tilemap_packed.png" id="2_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
+size = Vector2(36, 36)
+
+[node name="ExitDoor" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -9)
+texture = ExtResource("2_tex")
+region_enabled = true
+region_rect = Rect2(306, 72, 36, 36)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_door")

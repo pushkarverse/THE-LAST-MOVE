@@ -70,6 +70,11 @@ func add_coin(amount: int = 1) -> void:
 
 func lose_life() -> void:
 	lives = max(0, lives - 1)
+	
+	# Death Penalty
+	score = max(0, score - 100)
+	score_changed.emit(score)
+	
 	lives_changed.emit(lives)
 	if lives <= 0:
 		game_over.emit()

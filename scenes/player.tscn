@@ -21,3 +21,12 @@ offset = Vector2(0, -64)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_body")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -16)
+limit_left = 0
+limit_bottom = 360
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
