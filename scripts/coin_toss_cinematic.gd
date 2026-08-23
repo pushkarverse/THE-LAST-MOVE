@@ -116,12 +116,10 @@ func _resolve_toss(timeout: bool) -> void:
 		AudioManager.play("stage-clear-8-bit")
 		# Set final visual
 		coin_sprite.scale.y = 1.0
-		# Swap texture based on result (assume we preload textures or just use logic)
-		# For simplicity, we just use labels or color on the coin.
-		if final_coin_result == "HEADS":
-			coin_sprite.modulate = Color.RED
+		if is_win:
+			coin_sprite.modulate = Color.GREEN
 		else:
-			coin_sprite.modulate = Color.BLUE
+			coin_sprite.modulate = Color.RED
 	)
 	
 	tw.tween_interval(1.0)
@@ -132,7 +130,7 @@ func _resolve_toss(timeout: bool) -> void:
 
 func _do_win() -> void:
 	state = 3
-	_show_dialog("YOU MAY PASS.")
+	_show_dialog("Great you can pass see, until next time")
 	AudioManager.play("stage-clear-8-bit")
 	await get_tree().create_timer(2.0).timeout
 	

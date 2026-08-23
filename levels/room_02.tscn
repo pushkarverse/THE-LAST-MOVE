@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" path="res://assets/environment/kenney_pixel-platformer/Tilemap/tilemap_packed.png" id="5_texture"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="6_hud"]
 [ext_resource type="Texture2D" path="res://assets/environment/moon.png" id="7_moon"]
+[ext_resource type="PackedScene" uid="uid://cxab3x2sbgksq" path="res://scenes/animated_sky.tscn" id="sky_scene"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bqvnp"]
 texture = ExtResource("5_texture")
@@ -15,6 +16,8 @@ texture_region_size = Vector2i(18, 18)
 1:6/0 = 0
 0:7/0 = 0
 1:7/0 = 0
+1:4/0 = 0
+1:5/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_1yuqw"]
 tile_size = Vector2i(18, 18)
@@ -62,28 +65,19 @@ position = Vector2(150, 198)
 position = Vector2(168, 198)
 
 [node name="Spike3" parent="." instance=ExtResource("3_spike")]
-position = Vector2(186, 198)
+position = Vector2(810, 198)
 
 [node name="Spike4" parent="." instance=ExtResource("3_spike")]
-position = Vector2(204, 198)
-
-[node name="Spike5" parent="." instance=ExtResource("3_spike")]
-position = Vector2(560, 198)
-
-[node name="Spike6" parent="." instance=ExtResource("3_spike")]
-position = Vector2(578, 198)
-
-[node name="Spike7" parent="." instance=ExtResource("3_spike")]
-position = Vector2(596, 198)
+position = Vector2(828, 198)
 
 [node name="Gem1" parent="." instance=ExtResource("2_gem")]
-position = Vector2(150, 150)
+position = Vector2(369, 160)
 
 [node name="Gem2" parent="." instance=ExtResource("2_gem")]
-position = Vector2(177, 130)
+position = Vector2(513, 124)
 
 [node name="Gem3" parent="." instance=ExtResource("2_gem")]
-position = Vector2(204, 150)
+position = Vector2(657, 88)
 
 [node name="Snow" type="CPUParticles2D" parent="."]
 position = Vector2(600, -100)

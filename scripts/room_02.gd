@@ -21,6 +21,8 @@ func _generate_terrain() -> void:
 	var terrain = get_node_or_null("Terrain")
 	if not terrain: return
 	
+	terrain.clear() # Clear any old tiles saved in the scene file
+	
 	# The Atlas IDs for Snow Blocks in the tileset (0 is the source ID)
 	var top_stone = Vector2i(1, 4)
 	var mid_stone = Vector2i(1, 5)
@@ -49,14 +51,12 @@ func _generate_terrain() -> void:
 		body.add_child(shape_node)
 		terrain.add_child(body)
 
-	# Build the Castle Ruins Layout
-	add_box.call(-5, 15, 12, 20)
-	add_box.call(18, 19, 11, 12)
-	add_box.call(22, 23, 10, 11)
-	add_box.call(26, 27, 9, 10)
-	add_box.call(30, 35, 8, 20)
-	add_box.call(40, 45, -2, 20)
-	add_box.call(55, 75, 12, 20)
+	# Build a wide staircase layout
+	add_box.call(-5, 15, 12, 20)    # Starting platform (Ground at y=11, 198)
+	add_box.call(18, 23, 11, 20)    # Step 1 (5 tiles wide, Ground at y=10, 180)
+	add_box.call(26, 31, 9, 20)     # Step 2 (5 tiles wide, Ground at y=8, 144)
+	add_box.call(34, 39, 7, 20)     # Step 3 (5 tiles wide, Ground at y=6, 108)
+	add_box.call(44, 75, 12, 20)    # Final platform for the Gate (Ground at y=11, 198)
 
 
 func _spawn_player() -> void:
