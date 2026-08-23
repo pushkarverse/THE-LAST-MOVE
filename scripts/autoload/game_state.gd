@@ -11,6 +11,7 @@ signal lives_changed(lives: int)
 signal score_changed(score: int)
 signal coins_changed(coins: int)
 signal time_changed(seconds: float)
+signal world_label_changed(new_label: String)
 signal time_up()          ## The per-room timer hit zero. The room decides what happens.
 signal game_over()        ## Lives reached zero.
 
@@ -20,12 +21,17 @@ const DEFAULT_ROOM_TIME: float = 60.0
 var lives: int = START_LIVES
 var score: int = 0
 var coins: int = 0
-var world_label: String = "1-1"
+var world_label: String = "1"
 
 # Per-room countdown. Rooms are designed to last under ~60 seconds.
 var time_left: float = DEFAULT_ROOM_TIME
 var _timer_running: bool = false
 
+func _ready() -> void:
+	game_over.connect(_on_game_over)
+
+func _on_game_over() -> void:
+	pass # HUD handles the game over screen and restart
 
 func _process(delta: float) -> void:
 	if not _timer_running:
@@ -82,3 +88,4 @@ func lose_life() -> void:
 
 func set_world_label(label: String) -> void:
 	world_label = label
+	world_label_changed.emit(world_label)

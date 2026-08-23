@@ -1,5 +1,5 @@
 extends Node2D
-## Room 01 - Redesigned Complete Level
+## Room 02 - Redesigned Complete Level
 ## The layout is visually editable in the Godot Editor.
 
 var _player      : CharacterBody2D
@@ -8,12 +8,55 @@ var _spawn_world : Vector2
 func _ready() -> void:
 	_spawn_player()
 	GameState.start_room_timer(120.0)
-	GameState.set_world_label("1")
+	GameState.set_world_label("2")
 	GameState.time_up.connect(_on_time_up)
 	
 	# Start normal background music (fades in).
 	# Note: Replace this path with the actual BGM file if it differs.
 	AudioManager.play_music("res://audio/music/bgm.ogg", 1.5)
+	
+	_generate_terrain()
+
+func _generate_terrain() -> void:
+	var terrain = get_node_or_null("Terrain")
+	if not terrain: return
+	
+	# The Atlas IDs for Snow Blocks in the tileset (0 is the source ID)
+	var top_stone = Vector2i(1, 4)
+	var mid_stone = Vector2i(1, 5)
+	
+	# Helper function to paint rectangular blocks of terrain and create collision
+	var add_box = func(x1: int, x2: int, y1: int, y2: int):
+		for x in range(x1, x2):
+			for y in range(y1, y2):
+				terrain.set_cell(Vector2i(x, y), 0, mid_stone)
+			terrain.set_cell(Vector2i(x, y1-1), 0, top_stone)
+			
+		# Generate Collision
+		var body = StaticBody2D.new()
+		var shape_node = CollisionShape2D.new()
+		var rect = RectangleShape2D.new()
+		
+		# tile size is 18x18
+		var w = (x2 - x1) * 18.0
+		var h = (y2 - (y1 - 1)) * 18.0
+		rect.size = Vector2(w, h)
+		shape_node.shape = rect
+		
+		# set position to center of the box
+		body.position = Vector2(x1 * 18.0 + w / 2.0, (y1 - 1) * 18.0 + h / 2.0)
+		
+		body.add_child(shape_node)
+		terrain.add_child(body)
+
+	# Build the Castle Ruins Layout
+	add_box.call(-5, 15, 12, 20)
+	add_box.call(18, 19, 11, 12)
+	add_box.call(22, 23, 10, 11)
+	add_box.call(26, 27, 9, 10)
+	add_box.call(30, 35, 8, 20)
+	add_box.call(40, 45, -2, 20)
+	add_box.call(55, 75, 12, 20)
 
 
 func _spawn_player() -> void:

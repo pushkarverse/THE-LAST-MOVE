@@ -135,8 +135,24 @@ func _do_win() -> void:
 	_show_dialog("YOU MAY PASS.")
 	AudioManager.play("stage-clear-8-bit")
 	await get_tree().create_timer(2.0).timeout
-	# Transition to next stage. For now, reload or print
-	get_tree().reload_current_scene()
+	
+	# Transition to next stage based on current world_label
+	if GameState.world_label.begins_with("1"):
+		GameState.set_world_label("2")
+		get_tree().change_scene_to_file("res://levels/room_02.tscn")
+	elif GameState.world_label.begins_with("2"):
+		GameState.set_world_label("3")
+		# If room_03 doesn't exist yet, we just print or load a placeholder
+		if ResourceLoader.exists("res://levels/room_03.tscn"):
+			get_tree().change_scene_to_file("res://levels/room_03.tscn")
+		else:
+			print("Room 3 not built yet. Staying in Room 2 for now.")
+			get_tree().change_scene_to_file("res://levels/room_02.tscn")
+	else:
+		# Fallback
+		get_tree().reload_current_scene()
+	
+	queue_free()
 
 func _do_loss() -> void:
 	state = 3
