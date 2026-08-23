@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://bq3dj0wy4nimg"]
+ ::""[gd_scene format=4 uid="uid://bq3dj0wy4nimg"]
 
 [ext_resource type="Script" uid="uid://gtfdg4ojlfty" path="res://scripts/room_01.gd" id="1_44nqh"]
 [ext_resource type="Texture2D" uid="uid://c6gao0j2k8cck" path="res://assets/environment/kenney_pixel-platformer/Tilemap/tilemap-backgrounds_packed.png" id="2_pxaul"]
@@ -6,11 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://djq1p0xwabcde" path="res://scenes/hazards/spike.tscn" id="4_kn7kg"]
 [ext_resource type="PackedScene" uid="uid://gbs6ogeu22ss" path="res://scenes/hazards/moving_platform.tscn" id="6_41c3v"]
 [ext_resource type="PackedScene" uid="uid://ci754x1no3glm" path="res://scenes/interactables/gem.tscn" id="8_ratwf"]
+[ext_resource type="PackedScene" uid="uid://cgbs6ogeu22ss" path="res://scenes/interactables/exit_door.tscn" id="10_lpynd"]
 [ext_resource type="PackedScene" uid="uid://cygate123" path="res://scenes/interactables/gate_of_fate.tscn" id="11_gate"]
-[ext_resource type="Texture2D" uid="uid://dxjsmywwnqxx2" path="res://assets/environment/tree.png" id="12_tree"]
-[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="97_hud"]
+[ext_resource type="Texture2D" uid="uid://cyree3" path="res://assets/environment/tree.png" id="12_tree"]
 [ext_resource type="Script" uid="uid://dxlt7b7o0f0t2" path="res://scripts/mystery_label.gd" id="98_label"]
 [ext_resource type="Script" uid="uid://bnkkbl853i3p" path="res://scripts/spike.gd" id="99_spike"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="97_hud"]
 [ext_resource type="PackedScene" uid="uid://cxab3x2sbgksq" path="res://scenes/animated_sky.tscn" id="sky_scene"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ditkl"]
@@ -272,7 +273,7 @@ size = Vector2(16, 16)
 [node name="Room01" type="Node2D" unique_id=573006902]
 script = ExtResource("1_44nqh")
 
-[node name="AnimatedSky" parent="." unique_id=2140991187 instance=ExtResource("sky_scene")]
+[node name="AnimatedSky" parent="." instance=ExtResource("sky_scene")]
 layer = -10
 
 [node name="Collision" type="Node2D" parent="." unique_id=266374605]
@@ -442,7 +443,7 @@ position = Vector2(621, 261)
 [node name="@Area2D@54" parent="." unique_id=450892066 instance=ExtResource("4_kn7kg")]
 position = Vector2(639, 261)
 
-[node name="Tree" type="Sprite2D" parent="." unique_id=-1568064672]
+[node name="Tree" type="Sprite2D" parent="." unique_id=2726902624]
 position = Vector2(760, 189)
 texture = ExtResource("12_tree")
 
@@ -474,4 +475,4 @@ text = "Special Mystery?
 horizontal_alignment = 1
 script = ExtResource("98_label")
 
-[node name="HUD" parent="." unique_id=1328454051 instance=ExtResource("97_hud")]
+[node name="HUD" parent="." instance=ExtResource("97_hud")]
