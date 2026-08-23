@@ -11,10 +11,10 @@ config_version=5
 [application]
 
 config/name="The Last Move"
-run/main_scene="uid://bq3dj0wy4nimg"
+run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
-config/run/main_scene="res://levels/room_01.tscn"
+config/run/main_scene="res://scenes/main_menu.tscn"
 
 [autoload]
 

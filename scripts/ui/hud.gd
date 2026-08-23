@@ -107,14 +107,19 @@ func _ready() -> void:
 	# Initial Setup
 	_update_hud()
 	
+func _format_level_label(val: String) -> String:
+	if val.begins_with("LEVEL") or val.begins_with("Level"):
+		return val
+	return "LEVEL %s" % val
+
 func _update_hud() -> void:
-	_level_label.text = "LEVEL: %s" % GameState.world_label
+	_level_label.text = _format_level_label(GameState.world_label)
 	_score_label.text = "SCORE: %04d" % GameState.score
 	for i in _hearts.size():
 		_hearts[i].modulate.a = 1.0 if i < GameState.lives else 0.0
 
 func _on_world_label_changed(label: String) -> void:
-	_level_label.text = "LEVEL: %s" % label
+	_level_label.text = _format_level_label(label)
 
 func _on_lives_changed(lives: int) -> void:
 	if lives < _hearts.size() and lives >= 0:
@@ -151,5 +156,5 @@ func _input(event: InputEvent) -> void:
 		AudioManager.stop_all() # Stop Game Over sound immediately
 		GameState.reset_run()
 		GameState.set_world_label("1")
-		get_tree().change_scene_to_file("res://levels/room_01.tscn")
+		SceneManager.change_scene("res://levels/room_01.tscn")
 

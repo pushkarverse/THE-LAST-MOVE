@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://cmainmenuroot"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/environment/moon.png" id="2_moon"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0470588, 0.0627451, 0.141176, 1)
+
+[node name="Moon" type="Sprite2D" parent="."]
+position = Vector2(510, 65)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_moon")
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+position = Vector2(320, 180)
+amount = 40
+lifetime = 6.0
+preprocess = 4.0
+emission_shape = 3
+emission_rect_extents = Vector2(320, 180)
+direction = Vector2(-1, 0.5)
+spread = 30.0
+gravity = Vector2(0, 5)
+initial_velocity_min = 5.0
+initial_velocity_max = 15.0
+scale_amount_min = 1.5
+scale_amount_max = 3.0
+color = Color(0.8, 0.9, 1, 0.6)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 28
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85098, 0.239216, 1)
+theme_override_colors/font_shadow_color = Color(0.2, 0.1, 0, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.04, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 36
+text = "The Last Step"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PromptLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+pivot_offset = Vector2(140, 10)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 14
+text = "PRESS ANY BUTTON TO START"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -32.0
+offset_right = 200.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.552941, 0.619608, 0.729412, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 11
+text = "A pixel platforming adventure"
+horizontal_alignment = 1
+vertical_alignment = 1

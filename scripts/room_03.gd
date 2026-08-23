@@ -53,9 +53,9 @@ func _on_reached_exit() -> void:
 	GameState.add_score(500)
 	await get_tree().create_timer(1.0).timeout
 	if next_scene_path != "" and FileAccess.file_exists(next_scene_path):
-		get_tree().change_scene_to_file(next_scene_path)
+		SceneManager.change_scene(next_scene_path)
 	else:
-		get_tree().reload_current_scene()
+		SceneManager.reload_scene()
 
 func _on_time_up() -> void:
 	AudioManager.play("warning")
