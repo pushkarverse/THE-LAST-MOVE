@@ -1,203 +1,54 @@
-THE LAST MOVE
+# The Last Move
 
-You reached the exit. You won. Now make one final move.
+**The Last Move** is an engaging 2D pixel-art platformer built in Godot 4.3. The game combines challenging platforming with mysterious thematic elements, featuring unique stage transitions, varying environments, and risk/reward mechanics.
 
-THE LAST MOVE is a retro-inspired puzzle/troll game by Team Binary
-Brains where reaching the exit is only the beginning. The game
-deliberately creates a false sense of safety after a level appears to be
-complete --- then challenges the player with one final decision.
+## 🌟 Features
 
-The exit isn't the puzzle. The win screen is the boss.
+- **Dynamic Platforming**: Fluid character movement including running, jumping, and double-jumping to navigate treacherous gaps and hazards.
+- **Thematic Worlds**: Journey through distinct environments:
+  - **Room 01**: The classic starting grounds.
+  - **Room 02**: A snowy, high-altitude obstacle course with wide staircase platforms.
+  - **Room 03**: The latest addition, featuring advanced mechanics and power-ups.
+- **The Gate of Fate**: A unique progression system. Reaching the end of a level triggers a high-stakes "Coin Toss" cinematic where your luck decides whether you advance safely or face the consequences of the "Hell Transition".
+- **Collectibles & Hazards**: Gather Gems for score and Mystery Boxes for unknown rewards, but watch out for deadly Spikes and bottomless pits!
+- **Dynamic HUD**: Tracks your current Score, remaining Hearts (Lives), and the current Level you are traversing.
+- **Custom Audio Manager**: A fully integrated global audio system managing background music (BGM) fading and retro 8-bit sound effects.
 
-🕹️ Game Concept
+## 📁 Project Structure
 
-Most games teach players that once they reach the goal, they are safe.
+The project is organized cleanly using Godot best practices:
 
-THE LAST MOVE breaks that assumption.
+- `assets/`: Contains all visual assets, including the Kenney Pixel Platformer tilesets, UI packs, and environment backgrounds (like the custom moon and skies).
+- `audio/`: Stores all music (`.ogg`) and sound effects (`.wav`, `.flac`, `.mp3`) used by the global `AudioManager`.
+- `levels/`: The main level scenes (`room_01.tscn`, `room_02.tscn`, `room_03.tscn`).
+- `scenes/`: Reusable packed scenes (prefabs) broken down into subfolders:
+  - `cinematics/`: The Coin Toss and Hell Transition sequences.
+  - `hazards/`: Spikes, moving platforms, and disappearing platforms.
+  - `interactables/`: Gems, Mystery Boxes, and the Gate of Fate.
+  - `player/`: The main player character.
+  - `ui/`: The HUD and Loading Screens.
+- `scripts/`: The GDScript files that power the game. Includes standard node scripts as well as global Singletons/Autoloads (`game_state.gd`, `audio_manager.gd`).
 
-Each room begins like a simple puzzle:
+## 🎮 How to Play
 
-SOLVE --- Reach the exit.
+- **Move**: `A` / `D` or `Left Arrow` / `Right Arrow`
+- **Jump**: `Space` (Press again in the air to Double Jump)
+- **Objective**: Navigate the obstacles, collect gems to increase your score, and reach the **Gate of Fate** at the end of each room. Win the coin toss to safely proceed to the next world!
 
-COMPLETE --- The game celebrates with a win screen, fanfare, and
-false safety.
+## 🛠️ Development Setup
 
-LAST MOVE --- Move, wait, or don't touch anything.
+1. Clone or download the repository.
+2. Open **Godot Engine 4.3** (or later compatible 4.x version).
+3. Import the `project.godot` file.
+4. Open `levels/room_01.tscn` (or press `F5` to run the main scene).
 
-SURVIVE --- Make the correct final decision or fall into the
-trap.
+### Modifying Levels
+- **Room 01** & **Room 03** are built using standard Godot `TileMapLayer` editing.
+- **Room 02** features a procedural terrain generation script (`room_02.gd`) which draws the platforms and gaps on `_ready()`, allowing for rapid layout iteration via code!
 
-Every trap is telegraphed. Nothing is random.
+## 📄 Assets & Credits
 
-The objective is not just to solve the room --- it is to learn when
-not to trust the win.
-
-✨ Core Features
-
-🚩 False Flag
-
-Each room can present two apparent solutions. The obvious one may be the
-wrong one.
-
-🔀 Rule Mutation
-
-The rule after the apparent win can change between rooms, preventing
-players from relying on superstition instead of observation.
-
-♥ Trust Meter
-
-The game measures how quickly the player relaxes after reaching the goal
-and can use that behavior to influence difficulty.
-
-📹 Rage Cam
-
-Player deaths can become short reaction clips designed for easy sharing.
-
-⚡ Fast Rooms
-
-Rooms are designed to take under 60 seconds, with each room
-retraining one player instinct.
-
- The Core Loop
-
-START
-  ↓
-SOLVE THE ROOM
-  ↓
-REACH THE EXIT
-  ↓
-"LEVEL COMPLETE"
-  ↓
-ONE FINAL MOVE
-  ↓
-MOVE / WAIT / DO NOTHING
-  ↓
-SURVIVE?
-  ├── YES → NEXT ROOM
-  └── NO  → RESTART / CLIP
-
-🧠 Design Philosophy
-
-The central assumption being challenged is:
-
-"Once I win, I'm safe."
-
-THE LAST MOVE turns the moment after victory into the most important
-part of the level.
-
-The experience is built around:
-
-False safety
-Player observation
-Misdirection
-Short puzzle sessions
-Predictable but deceptive traps
-Reaction-worthy failures
-Learning through repeated deaths
-
-🎨 UI / UX Direction
-
-The visual direction uses a retro NES-style HUD showing:
-
-WORLD   SCORE   LIVES   TIME
-The intended mobile experience is:
-Portrait orientation
-One-thumb controls
-Minimal menus
-Large win banners
-Small, easy-to-miss final prompts
-Retro pixel-art presentation
-
-🛠️ Planned Tech Stack
-
-Component Technology
-Game Engine         Godot 4
-Game Logic          Tick-based FSM
-Level Data          JSON
-Capture / Sharing   MP4 Export
-Platforms           Web, Android, iOS
-
-📁 Suggested Project Structure
-
-the-last-move/
-│
-├── assets/
-│   ├── audio/
-│   ├── fonts/
-│   ├── sprites/
-│   └── ui/
-│
-├── data/
-│   └── levels/
-│
-├── scenes/
-│   ├── levels/
-│   ├── player/
-│   ├── traps/
-│   └── ui/
-│
-├── scripts/
-│   ├── game/
-│   ├── player/
-│   ├── traps/
-│   └── ui/
-│
-├── project.godot
-├── README.md
-└── .gitignore
-
-🗺️ Development Roadmap
-
-WORLD 1 --- Hackathon Build
-
-Playable core experience
-10 rooms
-Main twist
-Chiptune / retro presentation
-
-WORLD 2 --- +6 Weeks
-
-Rage Cam
-Grave log
-
-WORLD 3 --- +12 Weeks
-
-Open beta
-50 rooms
-Trap editor
-
-FINAL BOSS --- Q1 2027
-
-Store launch
-iOS
-Android
-Web
-
-👥 Target Players
-
-THE LAST MOVE is designed especially for:
-
-Troll-game fans aged roughly 16--30
-Streamers and short-video creators looking for reaction-friendly
-gameplay
-Retro puzzle players and commuters looking for quick sessions
-The intended growth loop is:
-
-DIE → CLIP → "I'd never fall for that" → INSTALL
-
-👾 Team Binary Brains
-
-Project Status
-
-World 1 / Hackathon Prototype
-
-The initial target is a playable 10-room build demonstrating the core
-mechanic: the player reaches the apparent goal and must still survive
-one final move.
-
-License
-
-A license has not yet been specified for this project. Until one is
-added, please do not assume permission to copy, redistribute, or reuse
-the project's code or assets.
-
+- **Visuals**: Modified assets from the [Kenney Pixel Platformer](https://kenney.nl/) and [Kenney Pixel UI](https://kenney.nl/) packs.
+- **Character Sprite**: The player character uses the "Girl_2" sprite pack (located in `assets/characters/Girl_2/`), featuring full animations for idle, running, jumping, and interacting.
+- **Audio**: Custom retro 8-bit sound effects and BGM.
+- **Engine**: Built with [Godot 4.3](https://godotengine.org/).
