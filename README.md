@@ -1,203 +1,913 @@
-THE LAST MOVE
+<div align="center">
+  <img src="./assets/logo.jpg" alt="The Last Move Logo" width="300"/>
+  <h1>The Last Move</h1>
+  <p>A pixel-art platformer adventure built with Godot.</p>
 
-You reached the exit. You won. Now make one final move.
+  <h3>Tech Stack</h3>
+  <p>
+    <img src="https://img.shields.io/badge/Godot-4.7-blue?style=for-the-badge&logo=godotengine&logoColor=white" alt="Godot Engine"/>
+    <img src="https://img.shields.io/badge/GDScript-Native-blue?style=for-the-badge&logo=godotengine&logoColor=white" alt="GDScript"/>
+  </p>
+</div>
 
-THE LAST MOVE is a retro-inspired puzzle/troll game by Team Binary
-Brains where reaching the exit is only the beginning. The game
-deliberately creates a false sense of safety after a level appears to be
-complete --- then challenges the player with one final decision.
+---
 
-The exit isn't the puzzle. The win screen is the boss.
+# 🎨 Assets & Credits
 
-🕹️ Game Concept
+This project uses a combination of third-party game-development assets,
+open-source resources, existing asset packs, and custom game-specific
+implementations.
 
-Most games teach players that once they reach the goal, they are safe.
+All third-party assets remain subject to their respective creators'
+licenses. Please refer to the original source and license information
+before redistributing individual assets separately from this project.
 
-THE LAST MOVE breaks that assumption.
+---
 
-Each room begins like a simple puzzle:
+## 🧱 Pixel Art Assets
 
-SOLVE --- Reach the exit.
+### Kenney — Pixel Platformer
 
-COMPLETE --- The game celebrates with a win screen, fanfare, and
-false safety.
+A significant portion of the game's visual foundation is based on
+assets from Kenney's Pixel Platformer asset collection.
 
-LAST MOVE --- Move, wait, or don't touch anything.
+**Creator:** Kenney  
+**Website:** https://kenney.nl/  
+**Asset Collection:** Pixel Platformer  
+**License:** Creative Commons Zero (CC0 1.0)
 
-SURVIVE --- Make the correct final decision or fall into the
-trap.
+The Pixel Platformer collection is used as the visual foundation for
+various elements of the game, including:
 
-Every trap is telegraphed. Nothing is random.
+- Pixel-art terrain
+- Ground tiles
+- Platform tiles
+- Floating platforms
+- Environmental tiles
+- Decorative objects
+- Collectible objects
+- Gameplay objects
+- Character-related assets
+- Hazard-related assets
+- UI-related elements
+- Environmental decorations
+- Pixel-art world-building elements
 
-The objective is not just to solve the room --- it is to learn when
-not to trust the win.
+Kenney's assets are released under CC0, meaning attribution is not
+required, although credit is provided here as a courtesy.
 
-✨ Core Features
+Official asset source:
 
-🚩 False Flag
+https://kenney.nl/assets/pixel-platformer
 
-Each room can present two apparent solutions. The obvious one may be the
-wrong one.
+---
 
-🔀 Rule Mutation
+## 🧱 Pixel Platformer Blocks
 
-The rule after the apparent win can change between rooms, preventing
-players from relying on superstition instead of observation.
+Where applicable, assets from Kenney's Pixel Platformer Blocks collection
+are used for additional level construction and environment elements.
 
-♥ Trust Meter
+**Creator:** Kenney  
+**License:** Creative Commons Zero (CC0 1.0)
 
-The game measures how quickly the player relaxes after reaching the goal
-and can use that behavior to influence difficulty.
+The collection may be used for:
 
-📹 Rage Cam
+- Additional platform pieces
+- Terrain construction
+- Blocks
+- Level geometry
+- Environmental structures
+- Decorative blocks
+- World-building elements
 
-Player deaths can become short reaction clips designed for easy sharing.
+Official source:
 
-⚡ Fast Rooms
+https://kenney.nl/assets/pixel-platformer-blocks
 
-Rooms are designed to take under 60 seconds, with each room
-retraining one player instinct.
+---
 
- The Core Loop
+# 🌎 Environment Assets
 
-START
-  ↓
-SOLVE THE ROOM
-  ↓
-REACH THE EXIT
-  ↓
-"LEVEL COMPLETE"
-  ↓
-ONE FINAL MOVE
-  ↓
-MOVE / WAIT / DO NOTHING
-  ↓
-SURVIVE?
-  ├── YES → NEXT ROOM
-  └── NO  → RESTART / CLIP
+The game uses pixel-art environment assets to construct its different
+worlds and stages.
 
-🧠 Design Philosophy
+Environment assets include elements such as:
 
-The central assumption being challenged is:
+- Ground
+- Grass
+- Dirt
+- Platforms
+- Floating platforms
+- Terrain edges
+- Terrain decorations
+- Trees
+- Plants
+- Rocks
+- Environmental props
+- Background elements
+- Decorative objects
+- World-specific structures
+- Level-ending structures
+- Gates and doors
+- Mystery objects
+- Environmental details
 
-"Once I win, I'm safe."
+The environment is assembled and arranged specifically for the levels
+in this project.
 
-THE LAST MOVE turns the moment after victory into the most important
-part of the level.
+---
 
-The experience is built around:
+# 🗺️ Level Design
 
-False safety
-Player observation
-Misdirection
-Short puzzle sessions
-Predictable but deceptive traps
-Reaction-worthy failures
-Learning through repeated deaths
+The individual level layouts are custom-designed for this project.
 
-🎨 UI / UX Direction
+This includes:
 
-The visual direction uses a retro NES-style HUD showing:
+- Platform placement
+- Terrain layout
+- Jump sequences
+- Hazard placement
+- Collectible placement
+- Moving-platform placement
+- Player routes
+- Secret/mystery areas
+- Gate locations
+- Level progression
+- Difficulty progression
+- Environmental decoration
+- Background composition
+- Level pacing
 
-WORLD   SCORE   LIVES   TIME
-The intended mobile experience is:
-Portrait orientation
-One-thumb controls
-Minimal menus
-Large win banners
-Small, easy-to-miss final prompts
-Retro pixel-art presentation
+The third-party assets are used as building blocks, while their
+arrangement and gameplay implementation are specific to this project.
 
-🛠️ Planned Tech Stack
+---
 
-Component Technology
-Game Engine         Godot 4
-Game Logic          Tick-based FSM
-Level Data          JSON
-Capture / Sharing   MP4 Export
-Platforms           Web, Android, iOS
+# 🎮 Player & Character Assets
 
-📁 Suggested Project Structure
+The game uses pixel-art character assets for the playable character.
 
-the-last-move/
-│
-├── assets/
-│   ├── audio/
-│   ├── fonts/
-│   ├── sprites/
-│   └── ui/
-│
-├── data/
-│   └── levels/
-│
-├── scenes/
-│   ├── levels/
-│   ├── player/
-│   ├── traps/
-│   └── ui/
-│
-├── scripts/
-│   ├── game/
-│   ├── player/
-│   ├── traps/
-│   └── ui/
-│
-├── project.godot
-├── README.md
-└── .gitignore
+The player character is integrated into a custom gameplay system
+including:
 
-🗺️ Development Roadmap
+- Walking
+- Running
+- Jumping
+- Falling
+- Landing
+- Direction changes
+- Animation states
+- Collision
+- Death
+- Respawning
+- Interaction
+- Gate interaction
+- Cinematic sequences
 
-WORLD 1 --- Hackathon Build
+The gameplay behavior and integration are custom implementations for
+this project.
 
-Playable core experience
-10 rooms
-Main twist
-Chiptune / retro presentation
+---
 
-WORLD 2 --- +6 Weeks
+# ❤️ HUD & User Interface
 
-Rage Cam
-Grave log
+The game contains a custom gameplay HUD.
 
-WORLD 3 --- +12 Weeks
+The HUD includes:
 
-Open beta
-50 rooms
-Trap editor
+- Heart/life display
+- Score display
+- Level indicator
+- Collectible feedback
+- Heart-loss animation
+- Game Over interface
+- Restart prompt
+- Coin-toss interface
+- Heads/Tails selection
+- Countdown timer
+- Cinematic dialogue
+- Event/result displays
 
-FINAL BOSS --- Q1 2027
+The primary gameplay HUD is structured as:
 
-Store launch
-iOS
-Android
-Web
+    ❤️ ❤️ ❤️                 LEVEL: 1                 SCORE: 0000
 
-👥 Target Players
+The HUD remains fixed to the screen while the game world and camera move
+independently.
 
-THE LAST MOVE is designed especially for:
+---
 
-Troll-game fans aged roughly 16--30
-Streamers and short-video creators looking for reaction-friendly
-gameplay
-Retro puzzle players and commuters looking for quick sessions
-The intended growth loop is:
+# ❤️ Health / Lives System
 
-DIE → CLIP → "I'd never fall for that" → INSTALL
+The game includes a three-heart health/lives system.
 
-👾 Team Binary Brains
+The player begins gameplay with:
 
-Project Status
+    ❤️ ❤️ ❤️
 
-World 1 / Hackathon Prototype
+When the player dies:
 
-The initial target is a playable 10-room build demonstrating the core
-mechanic: the player reaches the apparent goal and must still survive
-one final move.
+    ❤️ ❤️ ❤️
+       ↓
+    ❤️ ❤️
+       ↓
+    ❤️
+       ↓
+    GAME OVER
 
-License
+The system includes:
 
-A license has not yet been specified for this project. Until one is
-added, please do not assume permission to copy, redistribute, or reuse
-the project's code or assets.
+- Heart-loss detection
+- Heart-loss animation
+- Death handling
+- Respawn handling
+- Score penalty
+- Game Over detection
+- Restart functionality
 
+---
+
+# 💎 Collectibles & Score
+
+The game contains collectible objects that contribute to the player's
+score.
+
+The score system includes:
+
+- Collectible detection
+- Point assignment
+- Score updates
+- Score animation
+- HUD synchronization
+- Death score penalty
+- Score reset/reinitialization
+
+The score is displayed using a fixed HUD element.
+
+Example:
+
+    SCORE: 0000
+    SCORE: 0100
+    SCORE: 0250
+    SCORE: 1000
+
+---
+
+# ⚠️ Hazards
+
+The game includes environmental hazards used to create platforming
+challenges.
+
+These include elements such as:
+
+- Spikes
+- Hazard collision areas
+- Death boxes
+- Dangerous gaps
+- Environmental death zones
+- Other stage-specific hazards
+
+Hazards interact with the existing player death system.
+
+Hazard interactions can trigger:
+
+- Player death
+- Heart reduction
+- Death animation
+- Score penalty
+- Respawn
+- Game Over
+
+---
+
+# 🌀 Moving Platforms
+
+The game uses moving platforms to create additional platforming
+challenges.
+
+Moving platforms include:
+
+- Horizontal movement
+- Vertical movement
+- Repeating movement
+- Platform collision
+- Player interaction
+- Level-specific positioning
+
+The platform layouts and movement patterns are configured specifically
+for each stage.
+
+---
+
+# ☁️ Animated Background Environment
+
+The game contains animated environmental background elements to make the
+world feel alive.
+
+Depending on the environment, these may include:
+
+- Clouds
+- Birds
+- Atmospheric particles
+- Environmental motion
+- Background decorations
+- Parallax elements
+
+For outdoor environments:
+
+- Clouds move from right to left.
+- Birds move from left to right.
+- Different elements use different speeds.
+- Background elements loop continuously.
+- Background elements remain behind gameplay.
+
+These systems are implemented as decorative background systems and do not
+interfere with gameplay collision.
+
+---
+
+# 🌳 Environmental Decoration
+
+The game uses environmental props to make each stage visually distinct.
+
+Examples include:
+
+- Trees
+- Plants
+- Rocks
+- Grass
+- Background structures
+- Decorative objects
+- Mystery boxes
+- Gates
+- Doors
+- World-specific props
+
+Environmental objects are arranged specifically for each level.
+
+---
+
+# ❓ Mystery / Special Mystery Object
+
+The game contains a special mystery interaction represented by a
+question-mark box.
+
+The level presents the object with a floating:
+
+    Special Mystery?
+
+label.
+
+The label includes a subtle animation to make the object stand out.
+
+---
+
+# 🔑 Key & Gate System
+
+The game contains a cinematic key-and-gate interaction.
+
+When the player reaches the gate:
+
+1. The player approaches the gate.
+2. The player takes a key from their pocket.
+3. The key is brought toward the lock.
+4. The key enters the keyhole.
+5. The player turns the key.
+6. The lock mechanism activates.
+7. The gate unlocks.
+8. The gate opens.
+9. The player enters.
+
+The interaction includes synchronized visual and audio feedback.
+
+---
+
+# 🔊 Audio & Sound Effects
+
+The game uses sound effects and music to provide feedback during gameplay
+and cinematic sequences.
+
+Audio categories include:
+
+### Gameplay
+
+- Walking sounds
+- Footstep sounds
+- Jump sounds
+- Landing sounds
+- Collectible sounds
+- Hazard/death sounds
+- Heart-loss sounds
+
+### Gate Interaction
+
+- Key extraction
+- Key movement
+- Key insertion
+- Lock turning
+- Lock clicking
+- Gate unlocking
+- Gate opening
+
+### Coin Toss
+
+- Choice confirmation
+- Coin flip
+- Coin movement
+- Coin landing
+- Result feedback
+- Timer/ticking sounds
+
+### Cinematic
+
+- Devil appearance
+- Ominous effects
+- Transition effects
+- Hell sequence
+- Falling effects
+- Death effects
+- Game Over effects
+
+All third-party audio remains subject to the license of its respective
+creator/source.
+
+---
+
+# 🎵 Music
+
+The game contains separate audio states for gameplay and Game Over.
+
+Gameplay music is used during normal level gameplay.
+
+Game Over music is used during the Game Over sequence.
+
+The audio system prevents multiple music tracks from playing
+simultaneously.
+
+When the player presses `R` to restart after Game Over:
+
+1. Game Over music fades/stops.
+2. Game Over audio state is cleared.
+3. The current level restarts.
+4. Normal gameplay music returns.
+5. Gameplay music fades in smoothly.
+
+This prevents Game Over music from continuing into the restarted level.
+
+---
+
+# 😈 Gate of Fate
+
+The end of the stage contains a special cinematic event known as the
+**Gate of Fate**.
+
+The Gate of Fate is a progression system that separates the normal
+platforming section from the next stage.
+
+The sequence includes:
+
+- Gate interaction
+- Key animation
+- Lock interaction
+- Gate opening
+- Screen transition
+- Devil appearance
+- Dialogue
+- Coin toss
+- Player choice
+- Countdown timer
+- Weighted outcome
+- Victory sequence
+- Hell sequence
+- Game Over
+
+---
+
+# 😈 Devil Encounter
+
+After entering the Gate of Fate, the player encounters a Devil character.
+
+The sequence is presented as a cinematic event.
+
+The Devil:
+
+- Appears on a dark screen
+- Introduces the challenge
+- Presents the coin toss
+- Requests the player's choice
+- Reacts to the result
+- Allows progression after a successful result
+- Sends the player toward Hell after failure
+
+The encounter uses custom scene composition, animation, dialogue,
+transitions and audio integration.
+
+---
+
+# 🪙 Coin Toss System
+
+The Gate of Fate includes a Heads/Tails coin-toss challenge.
+
+The interface is arranged as:
+
+    HEADS          COIN          TAILS
+
+The player selects:
+
+- HEADS on the left
+- TAILS on the right
+
+The player has a limited amount of time to make a decision.
+
+---
+
+# ⏱️ Five-Second Decision Timer
+
+The player has five seconds to select Heads or Tails.
+
+The countdown is displayed during the selection phase:
+
+    5
+    4
+    3
+    2
+    1
+
+If the player does not select an option before the timer expires,
+the event is treated as a loss.
+
+The timer includes visual and audio feedback.
+
+---
+
+# 🎲 Gate of Fate Probability
+
+The Gate of Fate uses a weighted outcome system.
+
+The intended probability is:
+
+    WIN  = 60%
+    LOSS = 40%
+
+The player's selection is compared against the resulting coin outcome.
+
+Example:
+
+    Player chooses HEADS
+    Result = HEADS
+    → WIN
+
+or:
+
+    Player chooses HEADS
+    Result = TAILS
+    → LOSS
+
+Likewise:
+
+    Player chooses TAILS
+    Result = TAILS
+    → WIN
+
+or:
+
+    Player chooses TAILS
+    Result = HEADS
+    → LOSS
+
+The displayed coin result matches the actual game result.
+
+---
+
+# 🔥 Hell Sequence
+
+If the player loses the Gate of Fate challenge, a cinematic Hell
+sequence is triggered.
+
+The sequence can include:
+
+- Devil reaction
+- Ominous transition
+- Screen shake
+- Portal/falling transition
+- Dark environment
+- Fire
+- Lava
+- Hell atmosphere
+- Falling animation
+- Player death
+- Game Over
+
+The Hell sequence is designed as a dramatic failure state rather than
+an ordinary platforming death.
+
+---
+
+# ☠️ Game Over
+
+The game contains a dedicated Game Over system.
+
+When all three hearts are lost:
+
+- Player control stops.
+- Gameplay pauses/ends.
+- Game Over UI appears.
+- The scene transitions into a death state.
+- Game Over audio plays.
+- The player can restart.
+
+The restart action is:
+
+    R — Retry
+
+The restart system restores the appropriate gameplay state and prevents
+Game Over music from continuing into the restarted level.
+
+---
+
+# 🎬 Cinematic Transitions
+
+The project uses cinematic transitions for major gameplay events.
+
+These include:
+
+- Level transitions
+- Gate transitions
+- Black-screen transitions
+- Devil introduction
+- Coin toss
+- Hell transition
+- Game Over
+- Restart
+
+Transitions use combinations of:
+
+- Fades
+- Animation
+- UI
+- Screen effects
+- Audio
+- Camera effects
+- Sprite animation
+
+---
+
+# 🌍 Multiple Worlds / Levels
+
+The game is designed around multiple rooms/stages.
+
+Each stage maintains the same core gameplay systems while providing a
+different world and level design.
+
+### Room 1
+
+Room 1 establishes the primary gameplay mechanics:
+
+- Basic platforming
+- Collectibles
+- Hazards
+- Moving platforms
+- Mystery object
+- HUD
+- Hearts
+- Score
+- Gate
+- Gate of Fate
+- Devil
+- Coin toss
+- Hell sequence
+
+### Room 2
+
+Room 2 is designed as a new world with:
+
+- Different environment
+- Different visual identity
+- Different terrain
+- Different platform arrangement
+- Different background
+- Different atmosphere
+- Different level layout
+- Different challenge progression
+
+The core gameplay systems remain consistent across stages.
+
+---
+
+# 🧩 Custom Game Systems
+
+The following systems were implemented specifically for this project:
+
+- Player controller integration
+- Player death system
+- Respawn system
+- Three-heart system
+- Heart-loss animation
+- Score system
+- Score penalty
+- Collectible integration
+- HUD
+- Level indicator
+- Game Over system
+- Retry system
+- Moving platform integration
+- Hazard integration
+- DeathBox interaction
+- Mystery object interaction
+- Gate interaction
+- Key animation
+- Lock interaction
+- Gate opening sequence
+- Gate of Fate
+- Devil encounter
+- Coin toss system
+- Heads/Tails selection
+- Five-second timer
+- 60/40 weighted outcome
+- Hell sequence
+- Cinematic transitions
+- Background cloud movement
+- Bird movement
+- Environmental animation
+- Music state management
+- Game Over music transition
+- Level transition system
+
+---
+
+# 🛠️ Game Engine & Technology
+
+### Godot Engine
+
+The game is developed using **Godot Engine**.
+
+Godot is used for:
+
+- Scene management
+- 2D rendering
+- Physics
+- Collision
+- Animation
+- UI
+- Audio
+- Input
+- Level management
+- Game state
+- Scene transitions
+- Particle effects
+- Camera systems
+- Scripting
+
+Official website:
+
+https://godotengine.org/
+
+---
+
+# 💻 Programming
+
+The game's gameplay logic is implemented using Godot's scripting
+environment.
+
+Custom scripts are responsible for:
+
+- Player movement
+- Physics
+- Level generation/management
+- Collision
+- Hazards
+- Collectibles
+- Score
+- Health
+- HUD
+- Game State
+- Gate interaction
+- Coin toss
+- Cinematic events
+- Audio state
+- Level transitions
+
+---
+
+# 🎨 Art Direction
+
+The game follows a pixel-art platformer visual style.
+
+The visual direction emphasizes:
+
+- Pixel-art sprites
+- Simple readable silhouettes
+- Bright gameplay elements
+- Strong environmental contrast
+- Compact HUD
+- Animated environmental details
+- Distinct world themes
+- Clear platform readability
+
+Different worlds use different environmental palettes and asset
+combinations while maintaining a consistent overall art style.
+
+---
+
+# 📝 Asset Licensing
+
+Third-party assets included in this project remain the property of their
+respective creators.
+
+Assets are not being claimed as original creations by the developer of
+this game.
+
+Where a third-party license requires attribution, the relevant creator
+and license information should be retained.
+
+For assets released under CC0, such as Kenney's relevant asset packs,
+attribution is not legally required, but credit is provided as a
+courtesy.
+
+Before redistributing the game's source files or individual third-party
+assets separately, users should verify the license terms of each asset.
+
+---
+
+# 🙏 Special Thanks
+
+Special thanks to:
+
+### Kenney
+
+For creating and providing high-quality game-development assets that
+helped establish the visual foundation of this project.
+
+Website:
+
+https://kenney.nl/
+
+Asset library:
+
+https://kenney.nl/assets
+
+---
+
+# 📜 Third-Party Asset Notice
+
+This project may contain third-party assets that are subject to their
+own licenses.
+
+Third-party assets should not be interpreted as being owned by the
+developer of this project.
+
+The developer's original contributions include the game's:
+
+- Level design
+- Game logic
+- Gameplay systems
+- Scene composition
+- Interactions
+- Game state
+- UI implementation
+- Cinematic sequences
+- Progression systems
+- Audio integration
+- Level structure
+- Custom scripting
+- System integration
+
+unless otherwise stated.
+
+---
+
+# ⚠️ License Verification
+
+Asset sources and licenses should always be verified against the
+original asset provider before commercial redistribution or publication.
+
+If an asset's source or license cannot be determined, it should be
+treated as:
+
+**Source/license requires verification**
+
+rather than assuming that the asset is free for redistribution.
+
+---
+
+# ❤️ Credits
+
+Made with:
+
+- Godot Engine
+- Kenney game-development assets
+- Third-party resources used under their respective licenses
+- Custom gameplay systems
+- Custom level design
+- Custom scene composition
+- Custom scripting and integration
+
+Thank you to the creators of the open and freely available resources
+that helped make this project possible.
+
+---
+
+# 📄 License
+
+This project's source code is provided under the MIT License (or applicable open-source license). 
+Please note that this license **only applies to the source code**. All third-party game assets (pixel art, audio, etc.) remain subject to their respective creators' licenses, as detailed in the sections above.
