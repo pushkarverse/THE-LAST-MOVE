@@ -18,6 +18,10 @@ var _jump_buf_timer  : float = 0.0
 var _step_timer      : float = 0.0
 var _was_on_floor    : bool  = false
 var _is_dead         : bool  = false
+var _air_jumps_used  : int   = 0     # counts mid-air jumps consumed this airtime
+
+## Set to true by the mystery box to unlock double jump
+var has_double_jump  : bool  = false
 
 ## Room sets this before adding player to scene tree
 var spawn_position   : Vector2 = Vector2.ZERO
@@ -35,6 +39,7 @@ signal reached_exit
 
 
 func _ready() -> void:
+	add_to_group("player")   # so mystery boxes and hazards can detect the player by group
 	if spawn_position != Vector2.ZERO:
 		position = spawn_position
 	anim_sprite.play("idle")
@@ -71,6 +76,7 @@ func _handle_coyote(delta: float) -> void:
 		_coyote_timer = COYOTE_TIME
 	elif is_on_floor():
 		_coyote_timer = 0.0
+		_air_jumps_used = 0    # Reset air jumps when back on ground
 	if _coyote_timer > 0.0:
 		_coyote_timer -= delta
 	_was_on_floor = is_on_floor()
@@ -89,7 +95,18 @@ func _handle_jump() -> void:
 		velocity.y      = JUMP_VELOCITY
 		_coyote_timer   = 0.0
 		_jump_buf_timer = 0.0
+		_air_jumps_used = 0
 		AudioManager.play("select", -6.0)   # light jump sound from existing SFX
+		return
+
+	# Double jump — only when airborne, power-up collected, and not yet used
+	if has_double_jump and not is_on_floor() and _coyote_timer <= 0.0:
+		if Input.is_action_just_pressed("jump") and _air_jumps_used < 1:
+			_air_jumps_used += 1
+			velocity.y = JUMP_VELOCITY * 0.85   # slightly weaker than ground jump
+			_jump_buf_timer = 0.0
+			AudioManager.play("select", -3.0, 1.3)  # slightly higher pitch = air jump feel
+			return
 
 	# Variable-height jump: release early to cut upward speed
 	if Input.is_action_just_released("jump") and velocity.y < 0.0:
@@ -163,6 +180,8 @@ func respawn(pos: Vector2) -> void:
 	_is_dead             = false
 	_coyote_timer        = 0.0
 	_jump_buf_timer      = 0.0
+	_air_jumps_used      = 0
+	has_double_jump      = false   # power-up resets on death (must re-collect each life)
 	anim_sprite.modulate = Color.WHITE
 	anim_sprite.play("idle")
 

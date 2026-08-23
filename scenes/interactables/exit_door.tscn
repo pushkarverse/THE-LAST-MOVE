@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://75iwaeu2hlyn" path="res://assets/environment/kenney_pixel-platformer/Tilemap/tilemap_packed.png" id="2_tex"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
-size = Vector2(36, 36)
+size = Vector2(18, 36)
 
 [node name="ExitDoor" type="Area2D"]
 collision_mask = 2
@@ -14,7 +14,7 @@ script = ExtResource("1_script")
 position = Vector2(0, -9)
 texture = ExtResource("2_tex")
 region_enabled = true
-region_rect = Rect2(306, 72, 36, 36)
+region_rect = Rect2(180, 72, 18, 36)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -9)

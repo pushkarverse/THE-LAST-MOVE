@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="The Last Move"
-run/main_scene="res://levels/room_01.tscn"
+run/main_scene="uid://bq3dj0wy4nimg"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 config/run/main_scene="res://levels/room_01.tscn"
@@ -21,6 +21,7 @@ config/run/main_scene="res://levels/room_01.tscn"
 GameState="*res://scripts/autoload/game_state.gd"
 AudioManager="*res://scripts/autoload/audio_manager.gd"
 GameManager="*res://scripts/game_manager.gd"
+SceneManager="*uid://j20v4cg7v8m1"
 
 [display]
 
@@ -29,6 +30,10 @@ window/size/viewport_height=360
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/scene_manager/plugin.cfg")
 
 [input]
 
