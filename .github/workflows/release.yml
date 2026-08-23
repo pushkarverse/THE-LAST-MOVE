@@ -29,5 +29,6 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ github.ref_type == 'tag' && github.ref_name || 'latest' }}
           files: ${{ steps.export.outputs.archive_directory }}/*
           generate_release_notes: true
