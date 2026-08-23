@@ -10,6 +10,11 @@ func _ready() -> void:
 	GameState.start_room_timer(120.0)
 	GameState.set_world_label("1-1")
 	GameState.time_up.connect(_on_time_up)
+	
+	# Start normal background music (fades in).
+	# Note: Replace this path with the actual BGM file if it differs.
+	AudioManager.play_music("res://audio/music/bgm.ogg", 1.5)
+
 
 func _spawn_player() -> void:
 	var spawn_node = get_node_or_null("PlayerSpawn")

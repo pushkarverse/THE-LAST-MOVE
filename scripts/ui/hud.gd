@@ -130,11 +130,13 @@ func _on_score_changed(score: int) -> void:
 
 func _on_game_over() -> void:
 	_is_game_over = true
+	AudioManager.stop_music(1.2) # Fade out BGM
 	AudioManager.play("world_clear", -3.0, 0.6) # Pitched down sad sound
 	# Fade to grayscale
 	var tw = create_tween().set_parallel(true)
 	tw.tween_method(set_grayscale_weight, 0.0, 1.0, 1.2)
 	tw.tween_property(_game_over_container, "modulate:a", 1.0, 1.2)
+
 
 func set_grayscale_weight(weight: float) -> void:
 	_grayscale_rect.material.set_shader_parameter("weight", weight)
@@ -142,5 +144,7 @@ func set_grayscale_weight(weight: float) -> void:
 func _input(event: InputEvent) -> void:
 	if _is_game_over and event is InputEventKey and event.pressed and event.keycode == KEY_R:
 		_is_game_over = false
+		AudioManager.stop_all() # Stop Game Over sound immediately
 		GameState.reset_run()
 		get_tree().reload_current_scene()
+
