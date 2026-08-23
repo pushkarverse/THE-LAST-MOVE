@@ -1,6 +1,14 @@
-# The Last Move
+<div align="center">
+  <img src="./assets/logo.jpg" alt="The Last Move Logo" width="300"/>
+  <h1>The Last Move</h1>
+  <p>A pixel-art platformer adventure built with Godot.</p>
 
-A pixel-art platformer adventure built with Godot.
+  <h3>Tech Stack</h3>
+  <p>
+    <img src="https://img.shields.io/badge/Godot-4.7-blue?style=for-the-badge&logo=godotengine&logoColor=white" alt="Godot Engine"/>
+    <img src="https://img.shields.io/badge/GDScript-Native-blue?style=for-the-badge&logo=godotengine&logoColor=white" alt="GDScript"/>
+  </p>
+</div>
 
 ---
 
@@ -896,3 +904,10 @@ Made with:
 
 Thank you to the creators of the open and freely available resources
 that helped make this project possible.
+
+---
+
+# 📄 License
+
+This project's source code is provided under the MIT License (or applicable open-source license). 
+Please note that this license **only applies to the source code**. All third-party game assets (pixel art, audio, etc.) remain subject to their respective creators' licenses, as detailed in the sections above.
