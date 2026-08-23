@@ -21,6 +21,8 @@ const SOUNDS := {
     "button":      "res://audio/sfx/menu-select.wav",
     "stage_clear": "res://audio/sfx/stage-clear-8-bit.wav",
     "world_clear": "res://audio/sfx/final world-clear-8-bit.wav",
+    "unlock":      "res://audio/sfx/unlock.wav",
+    "door_open":   "res://audio/sfx/door_open.wav",
 }
 
 const POOL_SIZE: int = 8
