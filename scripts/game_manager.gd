@@ -12,6 +12,15 @@ const DEATH_DELAY : float = 0.8   # seconds before respawn after death
 ## Ordered list of room scene paths (expand as rooms are built)
 const ROOM_SCENES : Array[String] = [
 	"res://levels/room_01.tscn",
+	"res://levels/room_02.tscn",
+	"res://levels/room_03.tscn",
+]
+
+## Customizable names for levels (HUD displays these cleanly)
+const LEVEL_NAMES : Array[String] = [
+	"LEVEL 1",
+	"LEVEL 2",
+	"LEVEL 3",
 ]
 
 # ──────────────────────────────────────────
@@ -66,7 +75,22 @@ func advance_room() -> void:
 
 
 func load_current_room() -> void:
-	get_tree().change_scene_to_file(ROOM_SCENES[current_room])
+	SceneManager.change_scene(ROOM_SCENES[current_room])
+
+
+func start_game() -> void:
+	current_room = 0
+	lives = MAX_LIVES
+	score = 0
+	GameState.reset_run()
+	GameState.set_world_label("1")
+	load_current_room()
+
+
+func return_to_menu() -> void:
+	current_room = 0
+	GameState.reset_run()
+	SceneManager.change_scene("res://scenes/main_menu.tscn")
 
 
 func add_score(amount: int) -> void:

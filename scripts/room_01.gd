@@ -47,7 +47,8 @@ func _on_reached_exit() -> void:
 	AudioManager.play("stage_clear")
 	GameState.add_score(500)
 	await get_tree().create_timer(1.0).timeout
-	get_tree().reload_current_scene()
+	GameState.set_world_label("2")
+	SceneManager.change_scene("res://levels/room_02.tscn")
 
 func _on_time_up() -> void:
 	AudioManager.play("warning")
