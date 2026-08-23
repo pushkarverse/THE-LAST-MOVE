@@ -1,4 +1,4 @@
- ::""[gd_scene format=4 uid="uid://bq3dj0wy4nimg"]
+[gd_scene format=4 uid="uid://bq3dj0wy4nimg"]
 
 [ext_resource type="Script" uid="uid://gtfdg4ojlfty" path="res://scripts/room_01.gd" id="1_44nqh"]
 [ext_resource type="Texture2D" uid="uid://c6gao0j2k8cck" path="res://assets/environment/kenney_pixel-platformer/Tilemap/tilemap-backgrounds_packed.png" id="2_pxaul"]
