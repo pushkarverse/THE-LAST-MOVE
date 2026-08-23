@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxab3x2sbgksq"]
+[gd_scene format=3 uid="uid://cxab3x2sbgksq"]
 
 [ext_resource type="Script" path="res://scripts/animated_sky.gd" id="1_4n2b1"]
 [ext_resource type="Texture2D" uid="uid://cxcloud" path="res://assets/environment/cloud.png" id="2_c34g6"]
